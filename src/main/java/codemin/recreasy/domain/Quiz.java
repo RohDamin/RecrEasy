@@ -21,5 +21,5 @@ public class Quiz {
     private String category;
 
     @OneToMany(mappedBy = "quiz") // 연관관계의 거울
-    private List<GameQuiz> gameQuiz = new ArrayList<>();
+    private List<GameQuiz> gameQuizs = new ArrayList<>();
 }

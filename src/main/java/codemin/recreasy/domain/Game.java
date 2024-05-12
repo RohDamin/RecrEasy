@@ -26,5 +26,26 @@ public class Game {
     private Post post;
 
     @OneToMany(mappedBy = "game") // 연관관계의 거울
-    private List<GameQuiz> gameQuiz = new ArrayList<>();
+    private List<GameQuiz> gameQuizs = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id") // 연관관계의 주인
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "game_slot_id") // 연관관계의 주인
+    private GameSlot gameSlot;
+
+    /**
+     * 연관관계 편의 메서드
+     */
+    public void setUser(User user) {
+        this.user = user;
+        user.getGames().add(this);
+    }
+
+    public void setGameSlot(GameSlot gameSlot) {
+        this.gameSlot = gameSlot;
+        gameSlot.getGames().add(this);
+    }
 }

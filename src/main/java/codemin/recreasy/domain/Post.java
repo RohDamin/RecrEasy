@@ -35,10 +35,24 @@ public class Post {
     @JoinColumn(name = "download_count")
     private int downloadCount;
 
-    @ManyToOne(fetch = FetchType.LAZY) // 연관관계의 주인
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id") // 연관관계의 주인
     private User user;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "game_id") // 연관관계의 주인
     private Game game;
+
+    /**
+     * 연관관계 편의 메서드
+     */
+    public void setUser(User user) {
+        this.user = user;
+        user.getPosts().add(this);
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+        user.getPosts().add(this);
+    }
 }
