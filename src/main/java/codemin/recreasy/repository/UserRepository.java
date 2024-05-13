@@ -3,11 +3,13 @@ package codemin.recreasy.repository;
 import codemin.recreasy.domain.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class UserRepository {
 
     @PersistenceContext
