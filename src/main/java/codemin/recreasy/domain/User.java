@@ -22,6 +22,10 @@ public class User {
 
     private int point;
 
+    private int gameSlotCount = 2;
+
+    private int gameSlotLimit = 10;
+
     @OneToMany(mappedBy = "user") // 연관관계의 거울
     private List<Post> posts = new ArrayList<>();
 

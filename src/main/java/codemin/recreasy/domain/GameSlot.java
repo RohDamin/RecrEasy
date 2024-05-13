@@ -16,12 +16,6 @@ public class GameSlot {
     @Column(name = "game_slot_id")
     private Long gameSlotId;
 
-    @Column(name = "max_slot")
-    private int maxSlot;
-
-    @Column(name = "remaining_slot")
-    private int remainingSlot;
-
     @Enumerated(EnumType.STRING)
     private GameSlotStatus state; // 슬롯상태 [EMPTY, GAME]
 
@@ -38,5 +32,15 @@ public class GameSlot {
     public void setUser(User user) {
         this.user = user;
         user.getGameSlots().add(this);
+    }
+
+    /**
+     * 생성 메서드
+     */
+    public static GameSlot createGameSlot(User user) {
+        GameSlot gameSlot = new GameSlot();
+        gameSlot.setUser(user);
+        gameSlot.setState(GameSlotStatus.empty); // 빈 슬롯 생성
+        return gameSlot;
     }
 }
