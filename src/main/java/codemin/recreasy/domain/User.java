@@ -16,6 +16,8 @@ public class User {
     @Column(name = "user_id")
     private Long userId;
 
+    private String email;
+
     private String password;
 
     private int point;
